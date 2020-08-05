@@ -37,26 +37,49 @@ class Painting():
 
 	def interface(self):
 		tool_bar = Frame(self.root,bg="gray")
-		tool_bar.pack(side=TOP,fill=X)
+		
 
-		btn_erase = Button(tool_bar,text="Erase",height=2,width=5)
+		image_eraser = PhotoImage(file='img/eraser.png')
+		btn_erase = Button(tool_bar,text="Erase",image=image_eraser)
+		btn_erase.image_eraser = image_eraser
 		btn_erase.grid(row=0,column=0,padx=4,pady=4)
 		btn_erase.bind("<Button-1>", self.erase)
 
-		btn_draw = Button(tool_bar,text="Draw",height=2,width=5)
+		image_brush = PhotoImage(file='img/brush.png')
+		btn_draw = Button(tool_bar,text="Draw",image=image_brush)
+		btn_draw.image_brush = image_brush
 		btn_draw.grid(row=0,column=1,padx=4,pady=4)
 		btn_draw.bind("<Button-1>", self.btn_draw)
 
-		btn_color = Button(tool_bar,text="Color",height=2,width=5)
+		image_color = PhotoImage(file='img/color.png')
+		btn_color = Button(tool_bar,text="Color",image=image_color)
+		btn_color.image = image_color
 		btn_color.grid(row=0,column=2,padx=4,pady=4)
 		btn_color.bind("<Button-1>", self.choose_color)
 
-		btn_clear = Button(tool_bar,text="Clear",height=2,width=5)
+		image_clear = PhotoImage(file='img/drop.png')
+		btn_clear = Button(tool_bar,text="Clear",image=image_clear)
+		btn_clear.image = image_clear
 		btn_clear.grid(row=0,column=3,padx=4,pady=4)
 		btn_clear.bind("<Button-1>", self.clear)
 
 		self.spin = Spinbox(tool_bar, from_=1, to=100, width=5, command=self.choose_br_size)  
 		self.spin.grid(row=0, column=4)
+
+		btn_save = Button(tool_bar,text="Save",height=2,width=5)
+		btn_save.grid(row=0,column=5,padx=4,pady=4)
+		btn_save.bind("<Button-1>", self.save)
+		
+		btn_load = Button(tool_bar,text="Load",height=2,width=5)
+		btn_load.grid(row=0,column=6,padx=4,pady=4)
+		btn_load.bind("<Button-1>", self.load)
+		tool_bar.pack(side=TOP,fill=X)
+
+	def save(self,event):
+		pass
+
+	def load(self,event):
+		pass
 
 	def choose_br_size(self): # Выбор размера кисти
 		self.brush_size = int(self.spin.get())
